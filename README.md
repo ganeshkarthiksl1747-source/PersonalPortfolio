@@ -126,7 +126,7 @@ Hero Section (Lines 368-379)
 <p1>I'm a <span style="color: #FFD700;">Your Title</span> Developer</p1>
 Profile Photo (Line 378)
 
-<img src="your-photo.jpg" alt="Profile">
+<img src="static/p.jpg" alt="Profile">
 About Section (Lines 383-390)
 
 Replace with your own bio
