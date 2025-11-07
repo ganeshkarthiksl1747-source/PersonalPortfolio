@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume - Ganesh Karthik SL</title>
+  <style>
+    :root {
+      --text: #111;
+      --muted: #444;
+      --accent: #0b93c8;
+    }
+
+    html, body {
+      padding: 0; margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #fff;
+      line-height: 1.35;
+    }
+    .page {
+      max-width: 840px;
+      margin: 24px auto;
+      padding: 28px 28px 48px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      background: #fff;
+    }
+
+    /* Header */
+    .header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 2px solid #e8e8e8;
+      padding-bottom: 12px;
+    }
+    .name {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .title {
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .actions {
+      display: flex; gap: 8px;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn.secondary { background: #f2f2f2; color: #111; }
+
+    /* Contact */
+    .contact {
+      display: flex; flex-wrap: wrap; gap: 16px 22px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .contact a { color: var(--accent); text-decoration: none; }
+
+    /* Sections */
+    h2 {
+      font-size: 18px; margin: 22px 0 6px; color: var(--accent);
+      border-bottom: 1px solid #e8e8e8; padding-bottom: 4px;
+    }
+    .section { margin-top: 12px; }
+
+    /* Lists */
+    ul { padding-left: 18px; margin: 8px 0; }
+    li { margin: 4px 0; }
+
+    /* Two-column skills */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px 24px;
+    }
+
+    /* Project entries */
+    .item {
+      margin: 10px 0 12px;
+    }
+    .item .top {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
+    }
+    .item .title { font-weight: 600; }
+    .item .meta { color: var(--muted); font-size: 13px; }
+
+    /* Print */
+    @media print {
+      .page { box-shadow: none; border: none; margin: 0; padding: 0; }
+      .actions { display: none; }
+      a { color: #000; text-decoration: none; }
+    }
+  </style>
+  <script>
+    function downloadPDF() { window.print(); }
+  </script>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div>
+        <div class="name">Ganesh Karthik SL</div>
+        <div class="title">Python Developer</div>
+        <div class="contact">
+          <span>Email: <a href="mailto:slganeshkarthik@gamil.com">slganeshkarthik@gamil.com</a></span>
+          <span>GitHub: <a href="https://github.com/Slganeshkarthik">github.com/Slganeshkarthik</a></span>
+          <span>LinkedIn: <a href="https://www.linkedin.com/in/ganeshkarthik-sl-784862331/">linkedin.com/in/ganeshkarthik-sl-784862331</a></span>
+          <!-- Optional: Location / Phone if available -->
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="#" onclick="downloadPDF(); return false;">Download PDF</a>
+        <a class="btn secondary" href="port2.html">Back to Portfolio</a>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>Summary</h2>
+      <p>
+        I am a Passionate and highly driven computer science student. My enthusiasm for technology and designing has driven me to
+        explore and excel in various aspects of the tech field. I firmly believe that the intersection of passion and hard work is
+        where true potential is realized. This belief has led me to explore various facets of the TECH field, allowing me to develop
+        a robust foundation in Python Backend development, Artificial Intelligence and Machine Learning. I am ready to embrace new
+        challenges and seize opportunities for growth and innovation.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div>
+          <div class="item">
+            <div class="title">Python</div>
+            <ul>
+              <li>Pandas</li>
+              <li>NumPy</li>
+              <li>Standard Library (os, datetime)</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="item">
+            <div class="title">Web Development</div>
+            <ul>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="item">
+            <div class="title">Programming</div>
+            <ul>
+              <li>C</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="item">
+            <div class="title">Frameworks</div>
+            <ul>
+              <li>Flask</li>
+              
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="item">
+            <div class="title">Database Management</div>
+            <ul>
+              <li>SQLite</li>
+              <li>Basic SQL</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Projects</h2>
+      <div class="item">
+        <div class="top">
+          <div class="title">Trash To Cash</div>
+          <div class="meta"><a href="https://github.com/Slganeshkarthik/Trash_to_Cash">GitHub</a></div>
+        </div>
+        <ul>
+          <li>Eco-initiative rewarding users for recycling waste; track contributions and earn points.</li>
+          <li>Focused on impactful, user-friendly design and clear messaging.</li>
+        </ul>
+      </div>
+      <hr>
+      <div class="item">
+        <div class="top">
+          <div class="title">Personal portfolio</div>
+          <div class="meta"><a href="https://portfoliogksl.netlify.app/portfolio">View site</a></div>
+          <div class="meta"><a href="https://github.com/Slganeshkarthik/PersonalPortfolio">GitHub</a></div>
+        </div>
+        <ul>
+          <li>Eco-initiative rewarding users for recycling waste; track contributions and earn points.</li>
+          <li>Focused on impactful, user-friendly design and clear messaging.</li>
+        </ul>
+      </div>
+      <!-- Add more projects as needed -->
+    </section>
+
+    <section class="section">
+      <h2>Education</h2>
+      <div class="item">
+        <div class="top">
+          <div class="title">Dayananda Sagar College of Engineering (DSCE)</div>
+          <div class="meta">B.E. in Computer Science Engineering • 2024 – 2028 (2nd Year)</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Links</h2>
+      <ul>
+        <li>GitHub: <a href="https://github.com/Slganeshkarthik">https://github.com/Slganeshkarthik</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/ganeshkarthik-sl-784862331/">https://www.linkedin.com/in/ganeshkarthik-sl-784862331/</a></li>
+        <li>HackerRank: <a href="https://www.hackerrank.com/profile/slganeshkarthik">https://www.hackerrank.com/profile/slganeshkarthik</a></li>
+      </ul>
+    </section>
+
+    <!-- Optional sections you can add later: Experience, Certifications, Achievements -->
+  </div>
+</body>
+</html>

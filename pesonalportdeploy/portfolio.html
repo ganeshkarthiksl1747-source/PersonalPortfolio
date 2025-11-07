@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+
+  <style>
+    /* ---------- Global Styles ---------- */
+    html {
+      scroll-behavior: smooth; /* enables smooth scrolling */
+    }
+
+    body {
+      background-image: url('static/background.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+    }
+
+    /* ---------- Navbar ---------- */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: fixed;  /* makes navbar stay at top */
+      width: 100%;
+      top: 0;
+      left: -5%;
+      z-index: 1000;
+    }
+
+    nav h2 {
+      font-size: 25px;
+      font-weight: bold;
+      color: white;
+      margin: 0;
+    }
+
+    .links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    .links a:hover {
+      color: rgb(229, 19, 19);
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1000px;
+      margin: 120px auto 80px auto; /* margin-top increased because nav is fixed */
+      gap: 40px;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.5),
+                  0 0 40px 10px rgba(0, 255, 255, 0.3);
+    }
+
+    .hero-text {
+      flex: 1 1 60%;
+    }
+
+    .hero-text p1 {
+      display: block;
+      color: white;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .hero-text h1 {
+      color: white;
+      font-size: 40px;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+    }
+
+    .oval-container {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #fff;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .oval-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .oval-container:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 12px 30px rgba(0, 255, 255, 0.25))
+              drop-shadow(0 6px 18px rgba(0, 0, 0, 0.15));
+    }
+
+    /* ---------- Section Headings ---------- */
+    h3 {
+      color: rgb(11, 147, 200);
+      font-size: 35px;
+      text-align: left;
+      margin: 80px 0 20px 50px;
+    }
+
+    /* ---------- About Section ---------- */
+    pre {
+      color: wheat;
+      font-size: 18px;
+      margin: 0 5% 60px 5%;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    /* ---------- Education Section ---------- */
+    .Education {
+      margin: 0 0 60px 10%;
+    }
+
+    .Education li {
+      color: wheat;
+      font-size: 18px;
+      margin-bottom: 5px;
+      list-style-type: circle;
+    }
+
+    /* ---------- Skills / Projects Containers ---------- */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      width: 80%;
+      margin: 40px auto 80px auto;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+    }
+
+    .container a.box {
+      text-decoration: none;
+      color: wheat;
+      display: block;
+      flex: 1 1 300px;
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container a.box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .box-content {
+      transition: opacity 0.3s ease;
+    }
+
+    .box-details {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: wheat;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .box:hover .box-details {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .box:hover .box-content {
+      opacity: 0;
+    }
+
+    /* ---------- Contact Section ---------- */
+    .Contact-container {
+      width: 80%;
+      margin: 40px auto 100px auto;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      text-align: center;
+      color: wheat;
+      font-size: 18px;
+    }
+    /* ---------- Resume Section ---------- */
+    .resume-container {
+      width: 80%;
+      margin: 40px auto 60px auto;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      text-align: center;
+      color: wheat;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px 12px;
+      padding: 12px 20px;
+      background: #FFD700;
+      color: #111;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn.outline {
+      background: transparent;
+      color: #FFD700;
+      border: 2px solid #FFD700;
+      box-shadow: none;
+    }
+
+    .btn.outline:hover {
+      background: #FFD700;
+      color: #111;
+    }
+
+    /* ---------- Badges / Pills ---------- */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 5% 20px 5%;
+    }
+    .badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .badge:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
+
+    /* ---------- Skill Progress Bars ---------- */
+    .progress-wrap { width: 80%; margin: 10px auto 40px auto; }
+    .progress-item { margin: 14px 0; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 14px; color: #eee; margin-bottom: 6px; }
+    .progress-bar {
+      width: 100%; height: 10px; border-radius: 999px; overflow: hidden;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+    }
+    .progress { height: 100%; width: 0; background: linear-gradient(90deg, #00e5ff, #00ffa6); transition: width 1.2s ease; }
+
+    /* ---------- Projects Grid ---------- */
+    .projects-grid {
+      width: 90%; margin: 20px auto 60px auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+    }
+    .project-card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px; overflow: hidden; color: #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(0,0,0,0.4); }
+    .project-card img { width: 100%; height: 180px; object-fit: cover; display:block; }
+    .project-body { padding: 16px; }
+    .project-title { margin: 0 0 6px 0; font-size: 20px; }
+    .project-links { display:flex; gap:10px; margin-top:10px; }
+
+    /* ---------- Contact Form ---------- */
+    .contact-form { width: 80%; margin: 0 auto 100px auto; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 14px; }
+    label { display:block; margin-bottom: 6px; color: #eee; font-size: 14px; }
+    input, textarea {
+      width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(0,0,0,0.35); color: #fff; font-size: 15px;
+      outline: none;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .error { color: #ff9b9b; font-size: 13px; margin-top: 4px; display:none; }
+    .alert { margin: 12px 0; padding: 12px 16px; border-radius: 8px; display:none; }
+    .alert.success { background: rgba(0,255,170,0.15); border: 1px solid rgba(0,255,170,0.35); color: #aef6e5; }
+    .alert.error { background: rgba(255,77,77,0.15); border: 1px solid rgba(255,77,77,0.35); color: #ffc9c9; }
+    .submit-row { display:flex; justify-content:center; }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Portfolio</h2>
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero" id="home">
+    <div class="hero-text">
+      <p1>Hello, I'm</p1>
+      <h1>Ganesh Karthik SL</h1>
+      <p1>I'm a <span style="color: #FFD700;">Python</span> Developer</p1>
+    </div>
+    <div class="oval-container">
+      <img src="static/p.jpg" alt="Profile">
+    </div>
+  </div>
+
+  <!-- About -->
+  <h3 id="about"><u>About Me</u> :</h3>
+  <pre>
+I am a Passionate and highly driven computer science student.
+My enthusiasm for technology and designing has driven me to explore and excel in various aspects of the tech field.
+I firmly believe that the intersection of passion and hard work is where true potential is realized.
+This belief has led me to explore various facets of the TECH field, allowing me to develop a robust foundation in Python Backend development,
+<span style="color: #056e18;">Artificial Intelligence</span> and <span style="color: #056e18;">Machine Learning</span>, etc.
+I am ready to embrace new challenges and seize opportunities for growth and innovation.
+  </pre>
+
+  <div style="margin: 0 5% 40px 5%;">
+    <h4 style="margin:0 0 10px 0; color:#FFD700;font-size: 25px;"><u>Interests</u></h4>
+    <ul style="margin:0; padding-left: 18px; color: wheat;">
+      <li>Artificial Intelligence & Machine Learning</li>
+      <li>Python Backend Development</li>
+      <li>Clean UI/UX and interactive web experiences</li>
+    </ul>
+  </div>
+
+  <!-- Education -->
+  <h3 id="education"><u>Education</u>:</h3>
+  <div class="Education">
+    <li>Institution: Dayananda Sagar College of Engineering (DSCE)</li>
+    <li>Degree: Bachelor of Engineering in Computer Science Engineering</li>
+    <li>Year: 2nd Year (2024 - 2028)</li>
+  </div>
+
+  <!-- Skills -->
+  <h3 id="skills"><u>Skills</u>:</h3>
+  <div class="container">
+    <a href="https://www.hackerrank.com/profile/slganeshkarthik" class="box">
+      <div class="box-content">
+        <h4><span style="font-size: 25px; color: black;"><u>Python</u>:</span></h4>
+        <ul style="margin-left: 10px;">
+          <li>Pandas</li>
+          <li>Numpy</li>
+          <li>Flask</li>
+          <li>SQL lite </li>
+        </ul>
+      </div>
+      <div class="box-details">
+        <p>
+          I am a Python enthusiast with a strong commitment to creating exceptional digital experiences.
+        </p>
+      </div>
+    </a>
+
+    <a href="https://github.com/Slganeshkarthik/Trash_to_Cash" class="box">
+      <div class="box-content">
+        <h4><span style="font-size: 25px; color: black;"><u>Web Development</u>:</span></h4>
+        <ul style="margin-left: 10px;">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+        </ul>
+      </div>
+      <div class="box-details">
+        <p>
+          I have hands-on experience in front-end web development.
+        </p>
+      </div>
+    </a>
+
+    <a href="https://drive.google.com/file/d/1Wy8PR54GnPS3hlOFyRV_2OtT6UMQFyRI/view?usp=drivesdk" class="box">
+      <div class="box-content">
+        <h4><span style="font-size: 25px; color: black;"><u>C</u>:</span></h4>
+        <ul style="margin-left: 10px;">
+          <li>I am proficient in C programming.</li>
+        </ul>
+      </div>
+      <div class="box-details">
+        <p>
+          I have a good foundation in C programming and logic building.
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Skill Badges -->
+  <div class="badges">
+    <span class="badge">Python</span>
+    <span class="badge">Pandas</span>
+    <span class="badge">NumPy</span>
+    <span class="badge">Flask</span>
+    <span class="badge">SQL lite</span>
+    <span class="badge">HTML5</span>
+    <span class="badge">CSS3</span>
+    <span class="badge">JavaScript</span>
+    <span class="badge">C</span>
+    <span class="badge">Git</span>
+    
+  </div>
+
+  <!-- Animated Skill Progress Bars -->
+  <div class="progress-wrap" aria-label="Skill proficiency">
+    <div class="progress-item">
+      <div class="progress-label"><span>Python</span><span>85%</span></div>
+      <div class="progress-bar"><div class="progress" data-percent="85"></div></div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-label"><span>Web Development</span><span>75%</span></div>
+      <div class="progress-bar"><div class="progress" data-percent="75"></div></div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-label"><span>C Programming</span><span>65%</span></div>
+      <div class="progress-bar"><div class="progress" data-percent="65"></div></div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-label"><span>Flask</span><span>45%</span></div>
+      <div class="progress-bar"><div class="progress" data-percent="45"></div></div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-label"><span>SQL lite </span><span>40%</span></div>
+      <div class="progress-bar"><div class="progress" data-percent="40"></div></div>
+    </div>
+  </div>
+
+  <!-- Projects -->
+  <h3 id="projects"><u>Projects</u>:</h3>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img src="static/home_page_sct.jpg" alt="Trash To Cash Screenshot" />
+      <div class="project-body">
+        <h4 class="project-title">Trash To Cash</h4>
+        <p class="project-desc">Eco-initiative rewarding users for recycling waste and tracking contributions.</p>
+        <div class="project-links">
+          <a class="btn" href="https://github.com/Slganeshkarthik/Trash_to_Cash" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="static/image.png" alt="Sample Project 2" />
+      <div class="project-body">
+        <h4 class="project-title">Portfolio Site</h4>
+        <p class="project-desc">Responsive personal portfolio showcasing skills and projects with modern UI effects.</p>
+        <div class="project-links">
+          <a class="btn outline" href="#home">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resume -->
+  <h3 id="resume"><u>Resume</u>:</h3>
+  <div class="resume-container">
+    <p>You can view or download my resume here:</p>
+    <div>
+      <a class="btn" href="static/resume.html" target="_blank" rel="noopener">View Resume</a>
+      <a class="btn outline" href="https://drive.google.com/file/d/1iy6wQVGta-BzkNyTH_WcZsavL3FXw8k-/view?usp=drive_link">Download Resume</a>
+    </div>
+    <p style="font-size: 14px; color: #eee; opacity: 0.85; margin-top: 10px;">
+      Note: If these links don't point to the latest file, replace the file ID in the URL with your resume's Google Drive file ID.
+    </p>
+  </div>
+
+  <!-- Contact -->
+  <h3 id="contact"><u>Contact</u>:</h3>
+  <div class="Contact-container">
+    <p style="margin-top:0">I'd love to connect—send me a message:</p>
+    <div id="form-alert" class="alert"></div>
+    <form id="contactForm" class="contact-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required />
+          <div class="error" id="err-name">Name is required.</div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          <div class="error" id="err-email">Valid email is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Your message..." required></textarea>
+        <div class="error" id="err-message">Message must be at least 10 characters.</div>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="btn">Send Message</button>
+      </div>
+      <p style="font-size:13px; opacity:.85; margin-top:12px;">This form uses client-side validation and EmailJS integration placeholder.</p>
+    </form>
+    <p style="margin-top:40px; font-size:14px;">Or reach me directly: <a href="mailto:slganeshkarthik@gamil.com" style="color:#FFD700;">slganeshkarthik@gamil.com</a></p>
+    <p>GitHub: <a href="https://github.com/Slganeshkarthik" style="color: #FFD700;">Slganeshkarthik</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/ganeshkarthik-sl-784862331/" style="color: #FFD700;">Slganeshkarthik</a></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS (optional)
+    emailjs.init('eGnljuifPkITJp0wh');
+  </script>
+  <script>
+    // Animated progress bars on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.progress').forEach(bar => {
+            const pct = bar.getAttribute('data-percent');
+            requestAnimationFrame(() => { bar.style.width = pct + '%'; });
+          });
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const progressWrap = document.querySelector('.progress-wrap');
+    if (progressWrap) observer.observe(progressWrap);
+
+    // Contact form validation + EmailJS placeholder
+    const form = document.getElementById('contactForm');
+    const alertBox = document.getElementById('form-alert');
+
+    function showError(id, show) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = show ? 'block' : 'none';
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    form.addEventListener('submit', function(ev) {
+      ev.preventDefault();
+      let ok = true;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name) { showError('err-name', true); ok = false; } else showError('err-name', false);
+      if (!validateEmail(email)) { showError('err-email', true); ok = false; } else showError('err-email', false);
+      if (!message || message.length < 10) { showError('err-message', true); ok = false; } else showError('err-message', false);
+
+      if (!ok) return;
+
+      // EmailJS integration
+      emailjs.send('service_voriexv','template_4xzb2ng',{
+        from_name: name,
+        reply_to: email,
+        message: message
+      }).then(() => {
+        alertBox.className = 'alert success';
+        alertBox.textContent = 'Message sent successfully!';
+        alertBox.style.display = 'block';
+        form.reset();
+      }).catch((err) => {
+        alertBox.className = 'alert error';
+        alertBox.textContent = 'Failed to send message. Please try again.';
+        alertBox.style.display = 'block';
+      });
+    });
+
+    // Force external (absolute) links to open in new tab with security attributes
+    (function() {
+      const currentHost = location.host;
+      document.querySelectorAll('a[href^="http"]').forEach(a => {
+        try {
+          const url = new URL(a.href);
+          if (url.host !== currentHost) {
+            a.setAttribute('target','_blank');
+            // Add rel only if not already present
+            const existingRel = (a.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
+            ['noopener','noreferrer'].forEach(flag => { if (!existingRel.includes(flag)) existingRel.push(flag); });
+            a.setAttribute('rel', existingRel.join(' '));
+          }
+        } catch(e) { /* ignore malformed URLs */ }
+      });
+    })();
+  </script>
+</body>
+</html>
